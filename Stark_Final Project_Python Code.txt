@@ -1,0 +1,25 @@
+import matplotlib.pyplot as plt
+
+import seaborn as sns
+
+import pandas as pd
+
+df = pd.read_csv (r'/Users/tiarastark/Desktop/DataSci/Food_Insecurity_Index_Maui.csv')
+print (df)
+
+a = df[df.Rank == 1]["Rank"].count()
+b = df[df.Rank == 2]["Rank"].count()
+c = df[df.Rank == 3]["Rank"].count()
+d = df[df.Rank == 4]["Rank"].count()
+e = df[df.Rank == 5]["Rank"].count()
+
+labels = 'First', 'Second', 'Third', 'Fourth', 'Fifth'
+sizes = [a, b, c, d, e]
+
+plt.pie(sizes, labels=labels, autopct='%1.1f%%')
+plt.title('Maui Food Insecurity by Rank', fontsize=20)
+patches, texts = plt.pie(sizes)
+plt.legend(patches, labels, loc="lower right")
+plt.axis('equal')
+plt.savefig("piechart.png")
+plt.show()
